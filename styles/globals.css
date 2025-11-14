@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset any old dark-mode background that might be lingering */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional: smoother typography */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
