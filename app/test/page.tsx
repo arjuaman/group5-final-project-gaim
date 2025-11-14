@@ -6,105 +6,70 @@ import { useEffect } from "react";
 export default function TestPage() {
   useEffect(() => {
     async function runTest() {
-      console.log("🔍 Starting Brand Kit Gemini test...");
+      console.log("🔍 Starting Brand Kit test (Groq)…");
 
       const testInput = {
-        businessName: "TestCo Labs",
-        offering: "AI-driven analytics dashboard",
-        industry: "Technology / SaaS",
+        businessName: "Starbucks Demo",
+        offering: "Premium handcrafted coffee, beverages, and café experience.",
+        industry: "Food & Beverage",
         scope: "Global",
-        audienceDemographics: "Mid-sized tech companies, age 25-45, global",
+        audienceDemographics:
+          "Adults 18–45 in urban areas, students, professionals.",
         audiencePsychographics:
-          "Tech-forward, efficiency-focused, automation-friendly",
-        audienceNeeds: "Automated insights, fast reporting, lower workload",
-        brandValues: "Innovation, transparency, intelligence, simplicity",
-        brandTones: "Energetic, smart, confident, helpful",
+          "Brand-aware, socially conscious, seeking comfort and consistency.",
+        audienceNeeds:
+          "Third place between home and work, quality beverages, community.",
+        brandValues:
+          "Warmth, community, sustainability, craftsmanship, consistency.",
+        brandTones:
+          "Friendly, premium, welcoming, relaxed, uplifting.",
         differentiation:
-          "Combining deep AI insights with real-time dashboards",
-        visualStyle: "Bold",
-        colorIntensity: "Vibrant",
+          "Globally recognizable café experience with personalized drinks and ethical sourcing.",
       };
 
-      // --- PREVIEW TEST ---
-      console.log("▶️ Testing preview endpoint (Gemini)...");
+      // PREVIEW
+      console.log("▶️ Testing /api/brandkits/preview (Groq)...");
       try {
         const res = await fetch("/api/brandkits/preview", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ input: testInput }),
         });
-
-        let data: any = null;
-        try {
-          data = await res.json();
-        } catch {
-          console.warn("Preview: response was not valid JSON.");
-        }
-
+        const data = await res.json();
         console.log("📡 Preview status:", res.status);
         console.log("📦 Preview body:", data);
-
-        if (!res.ok) {
-          console.error("❌ Preview API error:", data);
-        } else {
-          console.log("✅ Preview API (Gemini) succeeded.");
-        }
       } catch (err) {
         console.error("❌ Preview fetch error:", err);
       }
 
-      // --- FULL KIT TEST ---
-      console.log("▶️ Testing full brand kit endpoint (Gemini)...");
+      // FULL
+      console.log("▶️ Testing /api/brandkits/full (Groq)...");
       try {
         const res = await fetch("/api/brandkits/full", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ input: testInput }),
         });
-
-        let data: any = null;
-        try {
-          data = await res.json();
-        } catch {
-          console.warn("Full kit: response was not valid JSON.");
-        }
-
-        console.log("📡 Full kit status:", res.status);
-        console.log("📦 Full kit body:", data);
-
-        if (!res.ok) {
-          console.error("❌ Full API error:", data);
-        } else {
-          console.log("🎉 Successfully generated full kit (Gemini). ID:", data.id);
-        }
+        const data = await res.json();
+        console.log("📡 Full status:", res.status);
+        console.log("📦 Full body:", data);
       } catch (err) {
         console.error("❌ Full fetch error:", err);
       }
 
-      console.log("🧪 Gemini test complete.");
+      console.log("🧪 Groq test complete.");
     }
 
     runTest();
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto mt-20 p-6 bg-white shadow-soft rounded-funky border border-brand-bgAlt">
-      <h1 className="text-2xl font-heading font-semibold mb-2">
-        Brand Kit Gemini Test
-      </h1>
-      <p className="text-sm text-gray-600 mb-4">
-        This page automatically calls the preview and full brand kit API
-        endpoints with sample data and logs the results to the browser console.
+    <div className="max-w-xl mx-auto mt-20 p-6 bg-white rounded-3xl shadow-md border border-slate-200">
+      <h1 className="text-xl font-semibold mb-2">Brand Kit API Test (Groq)</h1>
+      <p className="text-sm text-slate-700 mb-3">
+        This page automatically calls the preview and full brand kit endpoints
+        using the Groq LLaMA 3.1 model. Open DevTools → Console to see results.
       </p>
-
-      <ol className="text-sm list-decimal ml-5 space-y-1">
-        <li>Open DevTools → Console.</li>
-        <li>Look for the lines starting with 📡 / 📦 / ❌ / 🎉.</li>
-        <li>
-          If you see an error mentioning <code>GEMINI_API_KEY</code> or
-          authentication, fix your key in <code>.env.local</code>.
-        </li>
-      </ol>
     </div>
   );
 }

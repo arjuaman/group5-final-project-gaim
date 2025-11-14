@@ -1,0 +1,111 @@
+{
+  "id": "b3f9d192-d9f8-4c2e-8219-956032f0eb13",
+  "createdAt": "2025-11-14T17:39:38.266Z",
+  "colors": [
+    {
+      "name": "Deep Sea Coral",
+      "hex": "#FFC67D",
+      "usage": "Primary accent"
+    },
+    {
+      "name": "Comfort Gray",
+      "hex": "#F7F7F7",
+      "usage": "Background"
+    },
+    {
+      "name": "Warm Beige",
+      "hex": "#F5DEB3",
+      "usage": "Secondary background"
+    },
+    {
+      "name": "Rich Brown",
+      "hex": "#786C3B",
+      "usage": "Primary text"
+    },
+    {
+      "name": "Deep Navy",
+      "hex": "#032B44",
+      "usage": "Secondary text"
+    }
+  ],
+  "fonts": [
+    {
+      "role": "heading",
+      "name": "Montserrat",
+      "fallback": "Arial",
+      "sample": "Starbucks Demo"
+    },
+    {
+      "role": "body",
+      "name": "Open Sans",
+      "fallback": "Helvetica",
+      "sample": "Premium handcrafted coffee, beverages, and café experience."
+    },
+    {
+      "role": "accent",
+      "name": "Great Vibes",
+      "fallback": "Lato",
+      "sample": "Third place between home and work"
+    }
+  ],
+  "logoPlaceholder": {
+    "id": "starbucks-demo",
+    "title": "Starbucks Demo Brand Identity",
+    "description": "Custom-designed logo placeholder for Starbucks Demo brand.",
+    "rationale": "A stylized, handcrafted coffee cup icon, symbolizing premium quality and warmth."
+  },
+  "taglineSuggestions": [
+    "Where every cup tells a story",
+    "Crafting moments, one cup at a time",
+    "Experience the art of handcrafted coffee"
+  ],
+  "brandVoiceDescription": "Warm, inviting, and expertly crafted, our brand voice is a reflection of the Starbucks Demo café experience.",
+  "socialMockups": [
+    {
+      "type": "Instagram Feed",
+      "description": "Feature a visually appealing image of a handcrafted coffee drink"
+    },
+    {
+      "type": "Facebook Post",
+      "description": "Highlight a customer testimonial or a behind-the-scenes look at our coffee-making process"
+    }
+  ],
+  "collateralMockups": [
+    {
+      "type": "Business Card",
+      "description": "Design a premium business card with a custom color scheme and the Starbucks Demo logo"
+    },
+    {
+      "type": "Email Newsletter",
+      "description": "Create a visually appealing email newsletter with a clear call-to-action"
+    }
+  ],
+  "websiteHeaderDescription": "Welcome to the Starbucks Demo website, where you can explore our premium handcrafted coffee, beverages, and café experience.",
+  "recommendedChannels": [
+    {
+      "channel": "Instagram",
+      "reason": "Visual storytelling and community engagement"
+    },
+    {
+      "channel": "Facebook",
+      "reason": "Customer testimonials and behind-the-scenes content"
+    }
+  ],
+  "campaignDirections": [
+    {
+      "title": "The Art of Handcrafted Coffee",
+      "concept": "Highlight the expertise and craftsmanship that goes into creating each cup of coffee",
+      "suggestedVisuals": "High-quality images of baristas in action, with a focus on the coffee-making process"
+    },
+    {
+      "title": "Third Place Between Home and Work",
+      "concept": "Emphasize the Starbucks Demo café experience as a welcoming and comfortable space",
+      "suggestedVisuals": "Images of customers relaxing in the café, with a focus on the comfortable atmosphere and high-quality coffee"
+    }
+  ],
+  "nextSteps": [
+    "Develop a comprehensive social media strategy",
+    "Design a series of engaging email newsletters",
+    "Create a content calendar to support the campaign directions"
+  ]
+}

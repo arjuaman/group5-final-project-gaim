@@ -1,0 +1,123 @@
+{
+  "id": "5b3cab66-6fc8-4dda-8f12-d43585b7403f",
+  "createdAt": "2025-11-14T17:10:46.448Z",
+  "colors": [
+    {
+      "name": "Deep Brew",
+      "hex": "#1a1d23",
+      "usage": "Primary background"
+    },
+    {
+      "name": "Warm Milk",
+      "hex": "#f7f2c4",
+      "usage": "Secondary background"
+    },
+    {
+      "name": "Rich Roast",
+      "hex": "#642a1c",
+      "usage": "Accent"
+    },
+    {
+      "name": "Sunny Sip",
+      "hex": "#8b9467",
+      "usage": "Highlight"
+    }
+  ],
+  "fonts": [
+    {
+      "role": "heading",
+      "name": "Pacifico",
+      "fallback": "Playfair Display",
+      "sample": "Pacifico"
+    },
+    {
+      "role": "body",
+      "name": "Merriweather",
+      "fallback": "Lato",
+      "sample": "Merriweather"
+    },
+    {
+      "role": "accent",
+      "name": "Great Vibes",
+      "fallback": "Alex Brush",
+      "sample": "Great Vibes"
+    }
+  ],
+  "logoPlaceholder": {
+    "id": "SB-Starlogo-01",
+    "title": "Starbucks Logo Placeholder",
+    "description": "An abstract representation of the Starbucks Siren integrated with the brand's initials.",
+    "rationale": "To create a simple and recognizable representation of the brand, while incorporating a modern twist with clean typography."
+  },
+  "taglineSuggestions": [
+    "Find Your Brew",
+    "Sip. Savor. Repeat.",
+    "Brewing moments that matter."
+  ],
+  "brandVoiceDescription": "The brand voice is friendly, premium, welcoming, relaxed, and uplifting, reflecting the brand's values of warmth, community, sustainability, craftsmanship, and consistency.",
+  "socialMockups": [
+    {
+      "type": "Instagram carousel",
+      "description": "Showcasing expertly crafted beverages and inviting community moments."
+    },
+    {
+      "type": "Facebook video",
+      "description": "Highlighting the brand's commitment to sustainability and social responsibility."
+    },
+    {
+      "type": "Twitter thread",
+      "description": "Sharing behind-the-scenes stories of the brand's craftsmanship and dedication to quality."
+    }
+  ],
+  "collateralMockups": [
+    {
+      "type": "Business card",
+      "description": "Showcasing a simple, modern design that highlights the brand's logo and contact information."
+    },
+    {
+      "type": "Brochure",
+      "description": "Highlighting the brand's offerings, values, and community focus through high-quality imagery and clear typography."
+    },
+    {
+      "type": "Menu board",
+      "description": "Displaying the brand's menu offerings in a clear, easy-to-read format that showcases the brand's attention to detail."
+    }
+  ],
+  "websiteHeaderDescription": "A modern, responsive design that showcases the brand's offerings, values, and community focus through high-quality imagery and clear typography, while providing a seamless user experience.",
+  "recommendedChannels": [
+    {
+      "channel": "Instagram",
+      "reason": "Ideal for showcasing the brand's visually appealing beverages and inviting community moments."
+    },
+    {
+      "channel": "Facebook",
+      "reason": "Suitable for sharing the brand's commitment to sustainability and social responsibility through engaging content."
+    },
+    {
+      "channel": "Twitter",
+      "reason": "Perfect for sharing behind-the-scenes stories of the brand's craftsmanship and dedication to quality."
+    }
+  ],
+  "campaignDirections": [
+    {
+      "title": "Sustainability Focused Campaign",
+      "concept": "Highlighting the brand's commitment to environmentally friendly practices and sourcing.",
+      "suggestedVisuals": "Greenery, eco-friendly packaging, and minimal waste visuals"
+    },
+    {
+      "title": "Craftsmanship Showcase Campaign",
+      "concept": "Showcasing the expertise and dedication of the brand's baristas and roasters.",
+      "suggestedVisuals": "Behind-the-scenes footage, in-depth brewing processes, and expertly crafted beverages"
+    },
+    {
+      "title": "Community Building Campaign",
+      "concept": "Focusing on the brand's role as a third place between home and work, highlighting community moments and events.",
+      "suggestedVisuals": "Cozy café atmosphere, group gatherings, and community-driven events"
+    }
+  ],
+  "nextSteps": [
+    "Finalize logo design and brand guidelines",
+    "Develop a comprehensive content strategy for social media and website",
+    "Plan and execute a sustainability-focused campaign"
+  ]
+}

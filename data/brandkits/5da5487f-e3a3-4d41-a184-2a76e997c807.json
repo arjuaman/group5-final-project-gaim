@@ -1,0 +1,106 @@
+{
+  "id": "5da5487f-e3a3-4d41-a184-2a76e997c807",
+  "createdAt": "2025-11-14T17:10:53.526Z",
+  "colors": [
+    {
+      "name": "Deep Sea Green",
+      "hex": "#34C759",
+      "usage": "Brand primary"
+    },
+    {
+      "name": "Warm Saddle Brown",
+      "hex": "#964B00",
+      "usage": "Secondary accent"
+    },
+    {
+      "name": "Snowfall White",
+      "hex": "#FFFFFF",
+      "usage": "Neutral background"
+    },
+    {
+      "name": "Merlo Coffee",
+      "hex": "#E7D09B",
+      "usage": "Accent"
+    }
+  ],
+  "fonts": [
+    {
+      "role": "heading",
+      "name": "Merlo Sans",
+      "fallback": "Arial",
+      "sample": "A"
+    },
+    {
+      "role": "body",
+      "name": "Merlo Text",
+      "fallback": "Helvetica",
+      "sample": "This is a sample text."
+    },
+    {
+      "role": "accent",
+      "name": "Merlo Script",
+      "fallback": "Arial",
+      "sample": "A"
+    }
+  ],
+  "logoPlaceholder": {
+    "id": "Starbucks Logo Placeholder",
+    "title": "A stylized, hand-drawn design featuring a mermaid silhouette, emphasizing community and global responsibility.",
+    "description": "The logo represents the company's heritage and commitment to serving high-quality, ethically sourced beverages.",
+    "rationale": "The mermaid symbolizes the unique blend of tradition and innovation that defines Starbucks' brand identity."
+  },
+  "taglineSuggestions": [
+    "Fuel Your Day",
+    "Crafting moments that matter",
+    "Experience the art of coffee"
+  ],
+  "brandVoiceDescription": "Warm, welcoming, and expertly crafted, the Starbucks brand voice embodies the spirit of community and global responsibility.",
+  "socialMockups": [
+    {
+      "type": "Instagram post featuring a vibrant, high-quality photo of a specialty coffee drink, emphasizing the brand's focus on craftsmanship.",
+      "description": "Showcasing the unique flavors and artistry that define the Starbucks experience."
+    },
+    {
+      "type": "TikTok video highlighting the importance of sustainability in coffee production.",
+      "description": "Educating customers about the company's commitment to environmentally friendly practices."
+    }
+  ],
+  "collateralMockups": [
+    {
+      "type": "Business card with a minimalist design, emphasizing the brand's focus on premium quality and personalization.",
+      "description": "Communicating the company's dedication to customer satisfaction and expertise."
+    },
+    {
+      "type": "In-store brochure highlighting the variety of specialty coffee drinks and promotions.",
+      "description": "Showcasing the brand's expertise in crafting unique and high-quality beverages."
+    }
+  ],
+  "websiteHeaderDescription": "Starbucks is redefining the coffee experience by providing a welcoming environment, high-quality drinks, and a commitment to sustainability.",
+  "recommendedChannels": [
+    {
+      "channel": "Instagram",
+      "reason": "Visual storytelling and community engagement"
+    },
+    {
+      "channel": "YouTube",
+      "reason": "Educational content and behind-the-scenes stories"
+    }
+  ],
+  "campaignDirections": [
+    {
+      "title": "Sustainability in Action",
+      "concept": "Highlighting Starbucks' efforts to reduce waste and promote eco-friendly practices.",
+      "suggestedVisuals": "Images of coffee farmers, eco-friendly stores, and recyclable cups."
+    },
+    {
+      "title": "Crafting Memories",
+      "concept": "Showcasing the unique experiences and moments created by Starbucks' expertly crafted beverages.",
+      "suggestedVisuals": "Photos of customers enjoying drinks, in-store events, and community activities."
+    }
+  ],
+  "nextSteps": [
+    "Develop a comprehensive social media strategy to engage with customers and promote the brand's community-focused values.",
+    "Create a series of educational videos highlighting Starbucks' commitment to sustainability and coffee quality.",
+    "Design a new in-store experience that incorporates elements of the brand's heritage and global responsibility."
+  ]
+}

@@ -2,26 +2,37 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import type { BrandInputs } from "@/lib/types";
 
 type GeographicScope = "Local" | "National" | "Global";
 
-interface BrandInputs {
-  businessName: string;
-  offering: string;
-  industry: string;
-  scope: GeographicScope;
-  audienceDemographics: string;
-  audiencePsychographics: string;
-  audienceNeeds: string;
-  brandValues: string;
-  brandTones: string;
-  differentiation: string;
-}
+const STARBUCKS_DEMO: BrandInputs = {
+  businessName: "Starbucks",
+  offering:
+    "Premium handcrafted coffees, teas, cold brews, and café beverages served in welcoming third-place environments.",
+  industry: "Food & Beverage",
+  scope: "Global",
+  audienceDemographics:
+    "Adults 18–45, urban professionals, students, and coffee enthusiasts in metropolitan areas.",
+  audiencePsychographics:
+    "Community-oriented, socially conscious, brand-aware, seeking comfort, personalization, and routine.",
+  audienceNeeds:
+    "A consistent, cozy space to relax or work, high-quality beverages, opportunities for social connection, and ethically sourced products.",
+  brandValues:
+    "Community, sustainability, warmth, craftsmanship, personalization, inclusivity, global responsibility.",
+  brandTones:
+    "Warm, friendly, premium, uplifting, reliable, artisan-focused and conversational.",
+  differentiation:
+    "A globally recognizable café experience centered on community, personalized drinks, and ethically sourced coffee, positioned as a welcoming ‘third place’ between home and work.",
+};
 
 export default function GeneratePage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
+  const totalSteps = 4;
+
   const [loadingFull, setLoadingFull] = useState(false);
+
   const [inputs, setInputs] = useState<BrandInputs>({
     businessName: "",
     offering: "",
@@ -35,13 +46,15 @@ export default function GeneratePage() {
     differentiation: "",
   });
 
-  const totalSteps = 4;
-
   const handleChange =
     (field: keyof BrandInputs) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      const value = e.target.value;
-      setInputs((prev) => ({ ...prev, [field]: value }));
+    (
+      e:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>
+        | React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      setInputs((prev) => ({ ...prev, [field]: e.target.value }));
     };
 
   const handleScopeClick = (scope: GeographicScope) => {
@@ -49,22 +62,24 @@ export default function GeneratePage() {
   };
 
   const handleNext = () => {
-    if (step < totalSteps) {
-      setStep((s) => s + 1);
-    }
+    if (step < totalSteps) setStep((s) => s + 1);
   };
 
   const handleBack = () => {
     if (step === 1) {
-      // On first step, go back to previous page (usually home)
       router.back();
     } else {
       setStep((s) => s - 1);
     }
   };
 
+  const handleUseDemo = () => {
+    setInputs(STARBUCKS_DEMO);
+  };
+
   const handleGenerateFull = async () => {
     if (step < totalSteps) return;
+
     setLoadingFull(true);
     try {
       const res = await fetch("/api/brandkits/full", {
@@ -74,10 +89,29 @@ export default function GeneratePage() {
       });
 
       const data = await res.json();
+
       if (!res.ok) {
         console.error("Full API error:", data);
         alert(data?.error || "Failed to generate full brand kit.");
         return;
+      }
+
+      if (!data?.id) {
+        console.error("No ID returned from full brand kit API:", data);
+        alert("Brand kit generated but no ID was returned.");
+        return;
+      }
+
+      // 🔑 Save kit in sessionStorage so /output/[id] can read it reliably
+      if (typeof window !== "undefined") {
+        try {
+          window.sessionStorage.setItem(
+            `brandkit-${data.id}`,
+            JSON.stringify(data)
+          );
+        } catch (err) {
+          console.error("Failed to write brand kit to sessionStorage:", err);
+        }
       }
 
       router.push(`/output/${data.id}`);
@@ -94,16 +128,29 @@ export default function GeneratePage() {
       <h1 className="font-heading text-2xl md:text-3xl mb-1 text-cyan-300">
         Brand Kit Generator
       </h1>
-      <p className="text-sm text-slate-400 mb-6">
+      <p className="text-sm text-slate-400 mb-2">
         Answer a few questions and let GenAI build your brand identity kit.
       </p>
+
+      {/* Demo data button */}
+      <div className="flex justify-end mb-2">
+        <button
+          type="button"
+          className="btn !bg-white !text-orange-500 !border-orange-500 hover:!bg-orange-500 hover:!text-white"
+          onClick={handleUseDemo}
+        >
+          Use Starbucks Demo Data ☕
+        </button>
+      </div>
 
       <div className="grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1.7fr)] gap-6">
         {/* LEFT: FORM CARD */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-6 space-y-5">
           {/* Progress header */}
           <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
-            <span>Step {step} of {totalSteps}</span>
+            <span>
+              Step {step} of {totalSteps}
+            </span>
             <span>
               {step === 1 && "Basics"}
               {step === 2 && "Audience"}
@@ -112,10 +159,12 @@ export default function GeneratePage() {
             </span>
           </div>
 
-          {/* Steps content */}
+          {/* STEP CONTENTS */}
           {step === 1 && (
             <div className="space-y-4">
-              <h2 className="font-heading text-lg text-sky-500">Step 1: Basics</h2>
+              <h2 className="font-heading text-lg text-sky-500">
+                Step 1: Basics
+              </h2>
 
               <div className="space-y-1">
                 <label className="text-xs font-medium text-slate-700">
@@ -164,21 +213,23 @@ export default function GeneratePage() {
                   Geographic Scope
                 </label>
                 <div className="flex flex-wrap gap-3">
-                  {(["Local", "National", "Global"] as GeographicScope[]).map((scope) => (
-                    <button
-                      key={scope}
-                      type="button"
-                      onClick={() => handleScopeClick(scope)}
-                      className={
-                        "btn !px-5 !py-2 !rounded-full shadow-md " +
-                        (inputs.scope === scope
-                          ? ""
-                          : "!bg-white !text-orange-500 !shadow-none")
-                      }
-                    >
-                      {scope}
-                    </button>
-                  ))}
+                  {(["Local", "National", "Global"] as GeographicScope[]).map(
+                    (scope) => (
+                      <button
+                        key={scope}
+                        type="button"
+                        onClick={() => handleScopeClick(scope)}
+                        className={
+                          "btn !px-5 !py-2 !rounded-full shadow-md " +
+                          (inputs.scope === scope
+                            ? ""
+                            : "!bg-white !text-orange-500 !shadow-none")
+                        }
+                      >
+                        {scope}
+                      </button>
+                    )
+                  )}
                 </div>
               </div>
             </div>
@@ -289,7 +340,7 @@ export default function GeneratePage() {
 
           {/* Footer buttons */}
           <div className="pt-4 mt-2 border-t border-slate-200 flex justify-between">
-            <button type="button" className="btn !bg-orange-500" onClick={handleBack}>
+            <button type="button" className="btn" onClick={handleBack}>
               ← Back
             </button>
 
@@ -312,15 +363,23 @@ export default function GeneratePage() {
           </div>
         </div>
 
-        {/* RIGHT: simple live preview card */}
+        {/* RIGHT: LIVE PREVIEW */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-6 space-y-4">
-          <div className="flex justify-between text-xs text-slate-500">
+          <div className="flex justify-between text-xs text-slate-500 mb-2">
             <span>Live Preview</span>
             <span>{inputs.businessName || "Your Business Name"}</span>
           </div>
 
+          {/* Simple color palette placeholders */}
+          <div className="grid grid-cols-4 gap-2 mb-4">
+            <div className="h-10 rounded-xl bg-slate-900" />
+            <div className="h-10 rounded-xl bg-slate-500" />
+            <div className="h-10 rounded-xl bg-slate-300" />
+            <div className="h-10 rounded-xl bg-slate-100" />
+          </div>
+
           <div>
-            <h3 className="font-heading text-xs text-slate-700 mb-2">
+            <h3 className="font-heading text-xs text-slate-700 mb-1">
               Typography Preview
             </h3>
             <p className="font-heading text-base mb-1">
@@ -335,8 +394,8 @@ export default function GeneratePage() {
           <div className="border border-dashed border-slate-300 rounded-xl p-3 text-xs text-slate-700">
             <p className="font-heading text-xs mb-1">Logo Concept</p>
             <p>
-              A simple monogram or abstract mark based on your name and industry
-              will be generated.
+              A simple monogram or abstract mark based on your name and
+              industry will be generated.
             </p>
           </div>
 

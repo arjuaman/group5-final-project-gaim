@@ -1,0 +1,123 @@
+{
+  "id": "6ace18e1-e54f-4fdf-b773-11f7619ca378",
+  "createdAt": "2025-11-14T17:40:41.364Z",
+  "colors": [
+    {
+      "name": "Store Red",
+      "hex": "#FFC080",
+      "usage": "Primary accent"
+    },
+    {
+      "name": "Store Green",
+      "hex": "#8B9467",
+      "usage": "Secondary accent"
+    },
+    {
+      "name": "Warm Beige",
+      "hex": "#F5F5DC",
+      "usage": "Background"
+    },
+    {
+      "name": "Deep Charcoal",
+      "hex": "#333333",
+      "usage": "Text"
+    }
+  ],
+  "fonts": [
+    {
+      "role": "heading",
+      "name": "Montserrat",
+      "fallback": "Helvetica, Arial, sans-serif",
+      "sample": "Starbucks"
+    },
+    {
+      "role": "body",
+      "name": "Open Sans",
+      "fallback": "Helvetica, Arial, sans-serif",
+      "sample": "Experience the world with every sip"
+    },
+    {
+      "role": "accent",
+      "name": "Pacifico",
+      "fallback": "Helvetica, Arial, sans-serif",
+      "sample": "Crafting the perfect cup, one sip at a time"
+    }
+  ],
+  "logoPlaceholder": {
+    "id": "starbucks-logo-placeholder",
+    "title": "Starbucks Logo",
+    "description": "The interlocking circle and siren logo represents the connection between people and coffee.",
+    "rationale": "The logo has undergone several modifications, each iteration refining its meaning and impact."
+  },
+  "taglineSuggestions": [
+    "Experience the world with every sip",
+    "Every cup tells a story",
+    "Brewing more than just coffee"
+  ],
+  "brandVoiceDescription": "Starbucks' brand voice is warm, friendly, and welcoming, yet premium and artisan-focused. It's conversational, yet confident and aspirational.",
+  "socialMockups": [
+    {
+      "type": "Instagram",
+      "description": "Showcasing unique drinks and vibrant café experiences"
+    },
+    {
+      "type": "Facebook",
+      "description": "Sharing community stories and promoting social responsibility"
+    },
+    {
+      "type": "Twitter",
+      "description": "Highlighting new menu items and expertly crafted drinks"
+    }
+  ],
+  "collateralMockups": [
+    {
+      "type": "Brochure",
+      "description": "Showcasing store offerings, community events, and sustainability initiatives"
+    },
+    {
+      "type": "Postcard",
+      "description": "Promoting loyalty programs and limited-time offers"
+    },
+    {
+      "type": "Menu Board",
+      "description": "Displaying menu items, prices, and promotions"
+    }
+  ],
+  "websiteHeaderDescription": "Welcome to Starbucks, where every cup tells a story of community, craftsmanship, and warm connections.",
+  "recommendedChannels": [
+    {
+      "channel": "Instagram",
+      "reason": "Visual storytelling, influencer partnerships, and targeted advertising"
+    },
+    {
+      "channel": "Facebook",
+      "reason": "Community engagement, events, and social responsibility campaigns"
+    },
+    {
+      "channel": "Twitter",
+      "reason": "Real-time engagement, customer service, and timely promotions"
+    }
+  ],
+  "campaignDirections": [
+    {
+      "title": "Sustainability Initiative",
+      "concept": "Highlighting Starbucks' efforts to reduce waste, source ethically, and promote environmental stewardship",
+      "suggestedVisuals": "Green packaging, recyclable materials, and eco-friendly store designs"
+    },
+    {
+      "title": "Community Spotlight",
+      "concept": "Showcasing the positive impact of Starbucks on local communities, including job creation and economic growth",
+      "suggestedVisuals": "Photos of baristas, customers, and store owners, set against warm and inviting store backgrounds"
+    },
+    {
+      "title": "New Menu Introduction",
+      "concept": "Introducing new, handcrafted drinks and highlighting their unique ingredients and preparation methods",
+      "suggestedVisuals": "Dramatic shots of drinks, expertly crafted by skilled baristas, and showcasing the quality of ingredients"
+    }
+  ],
+  "nextSteps": [
+    "Develop a comprehensive social media strategy to engage with customers and promote brand values.",
+    "Create a loyalty program that rewards customers for their purchases and encourages repeat business.",
+    "Invest in targeted advertising to reach new customers and promote new menu items."
+  ]
+}

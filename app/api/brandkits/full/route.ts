@@ -6,14 +6,30 @@ import { saveBrandKit } from "@/lib/store";
 
 export async function POST(req: NextRequest) {
   try {
-    const { input } = (await req.json()) as { input: BrandInputs };
+    const body = (await req.json()) as { input: BrandInputs };
 
-    const kit = await generateFullKit(input);
-    saveBrandKit(kit);
+    if (!body?.input?.businessName || !body?.input?.offering) {
+      return NextResponse.json(
+        { error: "Missing required fields: businessName, offering" },
+        { status: 400 }
+      );
+    }
 
-    return NextResponse.json(kit);
+    const kit = await generateFullKit(body.input);
+
+    // ✅ persist to disk so /output/[id] can load it
+    await saveBrandKit(kit);
+
+    return NextResponse.json(kit, { status: 200 });
   } catch (err: any) {
-    console.error("Full kit route error:", err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    console.error("❌ Full brand kit route (Groq) error:", err);
+    return NextResponse.json(
+      {
+        error:
+          err?.message ||
+          "Failed to generate full brand kit (Groq). Check server logs for details.",
+      },
+      { status: 500 }
+    );
   }
 }
