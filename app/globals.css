@@ -95,3 +95,8 @@ button:active,
   color: #01c8ff !important; 
   font-weight: 700;           
 } 
+
+input, textarea, select, .whitespace-pre-wrap {
+color: #000000 !important; 
+  font-weight: 700;
+}
