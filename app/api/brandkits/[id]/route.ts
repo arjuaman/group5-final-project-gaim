@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getBrandKit } from "@/lib/store";
+import { getBrandKitById } from "@/lib/store";
 
 export async function GET(
   _req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const kit = getBrandKit(params.id);
+  const kit = getBrandKitById(params.id);
   if (!kit) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
