@@ -1,5 +1,3 @@
----
-
 # 🚀 **GenAI BrandKit Builder**
 
 ### *Instant Brand Identity Creation for Startups, SMEs & Student Innovators — Powered by Groq LLaMA Models*
@@ -359,7 +357,3 @@ to empower every entrepreneur, student, and marketer.
 
 This prototype shows how far generative AI has already come —
 and how much further it can take us.
-
----
-
-Just tell me!
