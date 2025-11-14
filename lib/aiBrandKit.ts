@@ -1,37 +1,34 @@
 // lib/aiBrandKit.ts
-// Gemini-powered brand kit generation
+// Gemini (via @google/genai) powered brand kit generation
 
 import { randomUUID } from "crypto";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
 import {
   BrandInputs,
   BrandKitPreview,
   BrandKitFull,
 } from "./types";
 
+// Log once if the key is missing (helps during dev)
 if (!process.env.GEMINI_API_KEY) {
   console.error(
     "❌ GEMINI_API_KEY is not set. Add it to .env.local and restart the dev server."
   );
 }
 
-// This client will talk to https://generativelanguage.googleapis.com/v1beta
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+// New Google Gen AI SDK client (Gemini Developer API)
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+  // NOTE: no apiVersion override → uses the recommended beta/stable for this SDK
+});
 
-/**
- * Helper: call Gemini (gemini-pro) and force JSON-only output.
- */
+// Helper: call Gemini and force JSON-only output
 async function callGeminiAsJson(systemInstruction: string, payload: unknown) {
-  const model = genAI.getGenerativeModel({
-    // ✅ This model is available on v1beta in all accounts
-    model: "gemini-pro",
-  });
-
   const prompt = `
 You are a senior brand strategist and visual designer.
 
 Return ONLY a single valid JSON object.
-Do NOT include markdown, backticks, or any text before or after the JSON.
+Do NOT include markdown, code fences, comments, or any text before or after the JSON.
 
 ${systemInstruction}
 
@@ -39,13 +36,18 @@ BUSINESS INPUT:
 ${JSON.stringify(payload, null, 2)}
 `;
 
-  const result = await model.generateContent(prompt);
-  const text = result.response.text();
+  const response = await ai.models.generateContent({
+    // ✅ Current, supported text model
+    model: "gemini-2.5-flash",
+    contents: prompt,
+  });
+
+  const text = response.text;
 
   try {
     return JSON.parse(text);
   } catch (err) {
-    console.error("❌ Failed to parse JSON from Gemini. Raw response:", text);
+    console.error("❌ Gemini returned non-JSON. Raw response:", text);
     throw new Error("Gemini did not return valid JSON. See server logs.");
   }
 }
@@ -72,7 +74,12 @@ EXPECTED JSON SHAPE:
     { "name": string, "hex": string, "usage": string }
   ],
   "fonts": [
-    { "role": "heading" | "body" | "accent", "name": string, "fallback": string, "sample": string }
+    {
+      "role": "heading" | "body" | "accent",
+      "name": string,
+      "fallback": string,
+      "sample": string
+    }
   ],
   "logoPlaceholder": {
     "id": string,
@@ -83,7 +90,7 @@ EXPECTED JSON SHAPE:
   "taglineSuggestions": string[]
 }
 
-Keep it concise and suitable as an initial preview of the brand direction.
+Keep it concise and suitable as an initial brand preview.
 `,
       { task: "preview", input }
     );
@@ -92,7 +99,8 @@ Keep it concise and suitable as an initial preview of the brand direction.
   } catch (err: any) {
     console.error("❌ generatePreview (Gemini) error:", err);
     throw new Error(
-      err?.message || "Failed to generate preview using Gemini (gemini-pro)."
+      err?.message ||
+        "Failed to generate preview using Gemini (via @google/genai)."
     );
   }
 }
@@ -119,7 +127,12 @@ EXPECTED JSON SHAPE:
     { "name": string, "hex": string, "usage": string }
   ],
   "fonts": [
-    { "role": "heading" | "body" | "accent", "name": string, "fallback": string, "sample": string }
+    {
+      "role": "heading" | "body" | "accent",
+      "name": string,
+      "fallback": string,
+      "sample": string
+    }
   ],
   "logoPlaceholder": {
     "id": string,
@@ -147,7 +160,7 @@ EXPECTED JSON SHAPE:
 
 All content must be tailored to the given business.
 Use clear, professional wording.
-Do NOT add any extra top-level fields.
+Do NOT add extra top-level fields.
 `,
       { task: "full_brand_kit", input }
     );
@@ -163,7 +176,7 @@ Do NOT add any extra top-level fields.
     console.error("❌ generateFullKit (Gemini) error:", err);
     throw new Error(
       err?.message ||
-        "Failed to generate full brand kit using Gemini (gemini-pro)."
+        "Failed to generate full brand kit using Gemini (via @google/genai)."
     );
   }
 }
