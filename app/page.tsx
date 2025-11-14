@@ -1,56 +1,61 @@
+// app/page.tsx
 import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12 space-y-16">
-      {/* Hero */}
+    <div className="max-w-6xl mx-auto px-5 md:px-8 py-10 md:py-16 space-y-16">
+      {/* HERO */}
       <section className="grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight mb-4">
-            Instantly Craft Your Unique Brand Identity with{" "}
-            <span className="text-brand.primary">GenAI</span>.
+        <div className="space-y-6">
+          <h1 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
+            Instantly Craft Your
+            <span className="block">Unique Brand Identity</span>
+            with GenAI.
           </h1>
-          <p className="text-lg text-gray-700 mb-6">
+
+          <p className="text-sm md:text-base text-slate-800 max-w-xl">
             From logos to campaigns, generate a complete brand kit in minutes –
             no design background required.
           </p>
-          <Link
-            href="/generate"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand.accent text-white font-medium shadow-soft hover:translate-y-0.5 transition"
-          >
-            Start Building Your Brand Kit
-          </Link>
-          <p className="mt-3 text-xs text-gray-500">
-            Designed for busy founders, marketers, and solopreneurs.
-          </p>
+
+          {/* PRIMARY CTA – now clearly a button */}
+          <div className="flex flex-wrap gap-3 items-center">
+            <Link href="/generate" className="btn">
+              Start Building Your Brand Kit
+            </Link>
+            <span className="text-xs text-slate-700">
+              Designed for busy founders, marketers, and solopreneurs.
+            </span>
+          </div>
         </div>
-        <div className="relative">
-    <div className="relative rounded-3xl bg-white shadow-soft p-5 space-y-4 border border-brand-bgAlt">
-      <div className="flex justify-between text-xs text-gray-500">
-        <span>Live AI Preview</span>
-        <span>Brand Kit</span>
-      </div>
 
-      <div className="grid grid-cols-4 gap-2">
-        <div className="h-10 rounded-lg bg-brand.primary" />
-        <div className="h-10 rounded-lg bg-brand.accent" />
-        <div className="h-10 rounded-lg bg-gray-800" />
-        <div className="h-10 rounded-lg bg-gray-300" />
-      </div>
+        {/* Right side: simple preview card */}
+        <div className="flex justify-center md:justify-end">
+          <div className="rounded-3xl bg-white border border-brand-bgAlt shadow-sm p-5 w-full max-w-md">
+            <div className="flex justify-between text-[11px] text-slate-500 mb-3">
+              <span>Live AI Preview</span>
+              <span>Brand Kit</span>
+            </div>
 
-      <div className="space-y-1 text-xs">
-        <p className="font-heading text-sm text-gray-900">Your Business Name</p>
-        <p className="text-gray-600">
-          A consistent palette, font system, and logo concept tailored to your brand.
-        </p>
-      </div>
-    </div>
-  </div>
+            <div className="grid grid-cols-4 gap-2 mb-4">
+              <div className="h-10 rounded-xl bg-slate-900" />
+              <div className="h-10 rounded-xl bg-slate-500" />
+              <div className="h-10 rounded-xl bg-slate-300" />
+              <div className="h-10 rounded-xl bg-slate-100" />
+            </div>
+
+            <p className="font-heading text-sm mb-1">Your Business Name</p>
+            <p className="text-xs text-slate-700">
+              A consistent palette, font system, and logo concept tailored to
+              your brand.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* How it works */}
-      <section>
-        <h2 className="font-heading text-2xl mb-6">How It Works</h2>
+      {/* HOW IT WORKS */}
+      <section className="space-y-6">
+        <h2 className="font-heading text-2xl md:text-3xl">How It Works</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
@@ -59,30 +64,28 @@ export default function HomePage() {
             },
             {
               title: "GenAI Crafts Your Kit",
-              desc: "Our AI blends strategy + design principles to craft a tailored brand system.",
+              desc: "Our AI blends strategy and design principles to craft a tailored brand system.",
             },
             {
               title: "Download & Deploy",
               desc: "Get logos, colors, typography, voice, and campaigns ready to go.",
             },
-          ].map((s, idx) => (
+          ].map((item, idx) => (
             <div
-              key={s.title}
-              className="bg-white rounded-2xl border border-brand.bgAlt p-5 shadow-sm"
+              key={item.title}
+              className="bg-white rounded-3xl border border-slate-300 p-5 flex flex-col gap-3"
             >
-              <div className="w-9 h-9 rounded-full bg-brand.primary/10 flex items-center justify-center text-xs font-semibold text-brand.primary mb-3">
-                {idx + 1}
-              </div>
-              <h3 className="font-heading text-lg mb-2">{s.title}</h3>
-              <p className="text-sm text-gray-600">{s.desc}</p>
+              <div className="text-xs text-slate-500">{idx + 1}</div>
+              <h3 className="font-heading text-base">{item.title}</h3>
+              <p className="text-xs text-slate-700">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Key Features */}
-      <section>
-        <h2 className="font-heading text-2xl mb-6">Key Features</h2>
+      {/* KEY FEATURES */}
+      <section className="space-y-6">
+        <h2 className="font-heading text-2xl md:text-3xl">Key Features</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {[
             "Dynamic Color Palettes",
@@ -90,48 +93,18 @@ export default function HomePage() {
             "Multiple Logo Concepts",
             "AI-Driven Campaign Ideas",
             "Comprehensive Style Guides",
-            "Ready-to-Use Mock-ups",
+            "Social & Web Mockups",
           ].map((feature) => (
             <div
               key={feature}
-              className="bg-white rounded-2xl border border-brand.bgAlt p-5 flex flex-col gap-2"
+              className="bg-white rounded-3xl border border-slate-200 p-4"
             >
-              <span className="text-brand.primary text-xs font-semibold uppercase tracking-wide">
-                Feature
-              </span>
-              <h3 className="font-heading text-base">{feature}</h3>
-              <p className="text-xs text-gray-600">
-                Automatically generated to suit your industry, audience, and
-                tone.
+              <h3 className="font-heading text-sm mb-1">{feature}</h3>
+              <p className="text-[11px] text-slate-700">
+                Generated to match your industry, audience, and personality.
               </p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Why choose us */}
-      <section className="bg-white rounded-3xl border border-brand.bgAlt shadow-soft p-8">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="font-heading text-2xl mb-4">Why Choose Us</h2>
-            <ul className="space-y-3 text-sm text-gray-700">
-              <li>• Save Time & Cost vs. agencies.</li>
-              <li>• Professional Quality grounded in brand strategy.</li>
-              <li>• Consistency Across Channels baked into your kit.</li>
-              <li>• Empower Your Brand Story with clear voice + visuals.</li>
-            </ul>
-          </div>
-          <div>
-            <Link
-              href="/generate"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand.accent text-white font-medium shadow-soft hover:translate-y-0.5 transition"
-            >
-              Start Building Your Brand Kit
-            </Link>
-            <p className="mt-3 text-xs text-gray-500">
-              No credit card required to explore your first kit preview.
-            </p>
-          </div>
         </div>
       </section>
     </div>

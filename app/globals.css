@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
+/* Base theme variables */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a2342; /* dark navy for all text */
 }
 
 @theme inline {
@@ -12,15 +13,85 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark-mode fallback if you use it */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020617;
+    --foreground: #e5e7eb;
   }
 }
 
+/* Global base styles */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* --------------------------------------------------- */
+/*  HIGH-CONTRAST TEXT OVERRIDES                       */
+/*  Make all “light gray” text classes dark & readable */
+/* --------------------------------------------------- */
+
+.text-gray-300,
+.text-gray-400,
+.text-gray-500,
+.text-slate-300,
+.text-slate-400,
+.text-slate-500 {
+  color: #0a2342 !important; /* dark navy */
+}
+
+/* You can add other light variants as needed, e.g.: */
+/* .text-neutral-400 { color: #0a2342 !important; } */
+
+/* --------------------------------------------------- */
+/*  GLOBAL BUTTON STYLING (keeps your orange buttons)  */
+/* --------------------------------------------------- */
+
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+
+  border: 2px solid #f97316; /* bright orange border */
+  background-color: #f97316;  /* orange fill */
+  color: #ffffff;             /* white text */
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+
+  cursor: pointer;
+  line-height: 1.2;
+
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.35);
+
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    transform 100ms ease,
+    box-shadow 150ms ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #ea580c;  /* deeper orange */
+  border-color: #ea580c;
+  box-shadow: 0 10px 28px rgba(234, 88, 12, 0.5);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.96);
+}
+
+.font-heading {
+  /* background-color: #ffffff;  */
+  color: #01c8ff !important; 
+  font-weight: 700;           
+} 
