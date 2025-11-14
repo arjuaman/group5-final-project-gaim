@@ -100,3 +100,7 @@ input, textarea, select, .whitespace-pre-wrap {
 color: #000000 !important; 
   font-weight: 700;
 }
+
+#forceColor {
+  color: #ffffff !important; 
+}

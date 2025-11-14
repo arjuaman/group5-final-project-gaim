@@ -5,10 +5,8 @@ import { useEffect, useState } from "react";
 import type { BrandKitFull } from "@/lib/types";
 
 export default function OutputPage() {
-  // ✅ Get the dynamic route segment from Next (client-side)
   const params = useParams<{ id?: string | string[] }>();
 
-  // Normalise id to a simple string
   const idRaw = params?.id;
   const id =
     typeof idRaw === "string"
@@ -20,7 +18,6 @@ export default function OutputPage() {
   const [kit, setKit] = useState<BrandKitFull | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Load the generated kit from sessionStorage
   useEffect(() => {
     if (!id) {
       setLoading(false);
@@ -30,7 +27,6 @@ export default function OutputPage() {
     try {
       const key = `brandkit-${id}`;
       const stored = window.sessionStorage.getItem(key);
-
       console.log("[Output] reading brand kit with key:", key, "=>", !!stored);
 
       if (stored) {
@@ -127,9 +123,45 @@ export default function OutputPage() {
           </div>
         </div>
 
+        {/* Base logo concept */}
+        <div className="border border-dashed border-slate-300 rounded-2xl p-4 text-xs text-slate-700">
+          <p className="font-heading text-sm mb-1">
+            Logo Concept Overview: {kit.logoPlaceholder?.title}
+          </p>
+          <p className="mb-1">{kit.logoPlaceholder?.description}</p>
+          <p className="text-[11px] text-slate-500">
+            Rationale: {kit.logoPlaceholder?.rationale}
+          </p>
+        </div>
+
+        {/* Sample logos (two cards) */}
+        {kit.sampleLogos?.length > 0 && (
+          <div>
+            <h3 className="font-heading text-sm mb-2">
+              Sample Logo Directions
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {kit.sampleLogos.map((logo) => (
+                <div
+                  key={logo.id}
+                  className="border border-slate-200 rounded-2xl p-4 text-xs"
+                >
+                  <div className="font-heading text-sm mb-1">
+                    {logo.name}
+                  </div>
+                  <p className="mb-1">{logo.description}</p>
+                  <p className="text-[11px] text-slate-500">
+                    Rationale: {logo.rationale}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Fonts */}
         <div>
-          <h3 className="font-heading text-sm mb-2">Typography</h3>
+          <h3 className="font-heading text-sm mb-2">Typography Tokens</h3>
           <div className="grid md:grid-cols-3 gap-4">
             {kit.fonts?.map((f) => (
               <div
@@ -148,12 +180,55 @@ export default function OutputPage() {
             ))}
           </div>
         </div>
+
+        {/* Sample typography systems */}
+        {kit.sampleTypographies?.length > 0 && (
+          <div>
+            <h3 className="font-heading text-sm mb-2">
+              Sample Typography Systems
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {kit.sampleTypographies.map((t) => (
+                <div
+                  key={t.name}
+                  className="border border-slate-200 rounded-2xl p-4 text-xs"
+                >
+                  <div className="font-heading text-sm mb-2">{t.name}</div>
+                  <div className="mb-1">
+                    <span className="font-semibold">Heading:</span>{" "}
+                    {t.headingFont}
+                  </div>
+                  <div className="mb-1">
+                    <span className="font-semibold">Body:</span>{" "}
+                    {t.bodyFont}
+                  </div>
+                  {t.accentFont && (
+                    <div className="mb-1">
+                      <span className="font-semibold">Accent:</span>{" "}
+                      {t.accentFont}
+                    </div>
+                  )}
+                  <p className="text-[11px] text-slate-500 mb-1">
+                    Usage: {t.usage}
+                  </p>
+                  <p className="mt-1 text-sm font-heading">
+                    {t.sampleHeading}
+                  </p>
+                  <p className="mt-1 text-xs text-slate-700">
+                    {t.sampleBody}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Section 2: Verbal Identity */}
       <section className="bg-white rounded-3xl border border-slate-200 p-6 md:p-8 space-y-4">
         <h2 className="font-heading text-xl mb-2">Verbal Identity</h2>
 
+        {/* Taglines */}
         <div>
           <h3 className="font-heading text-sm mb-2">Tagline Options</h3>
           <ul className="list-disc list-inside text-sm text-slate-700">
@@ -163,6 +238,7 @@ export default function OutputPage() {
           </ul>
         </div>
 
+        {/* Brand voice */}
         <div>
           <h3 className="font-heading text-sm mb-2">Brand Voice</h3>
           <p className="text-sm text-slate-700">
@@ -177,6 +253,7 @@ export default function OutputPage() {
           Application & Implementation
         </h2>
 
+        {/* Social mockups */}
         <div>
           <h3 className="font-heading text-sm mb-2">
             Social Media Mockup Ideas
@@ -191,6 +268,7 @@ export default function OutputPage() {
           </ul>
         </div>
 
+        {/* Collateral */}
         <div>
           <h3 className="font-heading text-sm mb-2">
             Marketing Collateral Suggestions
@@ -205,6 +283,7 @@ export default function OutputPage() {
           </ul>
         </div>
 
+        {/* Recommended channels */}
         <div>
           <h3 className="font-heading text-sm mb-2">
             Recommended Channels
@@ -219,6 +298,7 @@ export default function OutputPage() {
           </ul>
         </div>
 
+        {/* Campaign directions */}
         <div>
           <h3 className="font-heading text-sm mb-2">
             Potential Campaign Directions
@@ -236,6 +316,69 @@ export default function OutputPage() {
           </ul>
         </div>
 
+        {/* Sample posters */}
+        {kit.samplePosters?.length > 0 && (
+          <div>
+            <h3 className="font-heading text-sm mb-2">
+              Sample Poster / Flyer Concepts
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {kit.samplePosters.map((p) => (
+                <div
+                  key={p.title}
+                  className="border border-slate-200 rounded-2xl p-4 text-xs"
+                >
+                  <div className="font-heading text-sm mb-1">
+                    {p.title}
+                  </div>
+                  <p className="font-semibold text-sm mb-1">
+                    {p.headline}
+                  </p>
+                  <p className="mb-1">{p.subheadline}</p>
+                  <p className="text-[11px] text-slate-700 mb-1">
+                    {p.description}
+                  </p>
+                  <p className="text-[11px] text-slate-500">
+                    CTA: {p.callToAction} • Placement: {p.placement}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Social post ideas: Twitter + Instagram */}
+        {kit.socialPostIdeas?.length > 0 && (
+          <div>
+            <h3 className="font-heading text-sm mb-2">
+              Sample Social Posts (Instagram & Twitter/X)
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {kit.socialPostIdeas.map((sp, i) => (
+                <div
+                  key={i}
+                  className="border border-slate-200 rounded-2xl p-4 text-xs"
+                >
+                  <div className="font-heading text-sm mb-1">
+                    {sp.platform} – {sp.format}
+                  </div>
+                  <p className="italic mb-1">&quot;{sp.caption}&quot;</p>
+                  <p className="text-[11px] text-slate-700 mb-1">
+                    Visual idea: {sp.visualIdea}
+                  </p>
+                  <p className="text-[11px] text-slate-500 mb-1">
+                    Hook: {sp.hook}
+                  </p>
+                  <p className="text-[11px] text-slate-500">
+                    Call to action: {sp.callToAction}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Next steps */}
         <div>
           <h3 className="font-heading text-sm mb-2">Next Steps</h3>
           <ul className="list-disc list-inside text-sm text-slate-700">

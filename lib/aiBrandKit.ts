@@ -22,7 +22,6 @@ const groq = new Groq({
 // Helper: call Groq and force JSON-only output with prompt discipline
 async function callGroqAsJson(systemInstruction: string, payload: unknown) {
   const completion = await groq.chat.completions.create({
-    // ✅ Updated to a supported production model
     model: "llama-3.1-8b-instant",
     temperature: 0.8,
     max_tokens: 2048,
@@ -111,7 +110,7 @@ Keep it concise and suitable as an initial brand direction preview.
 }
 
 /**
- * Generate the full brand kit: visual + verbal + applications.
+ * Generate the full brand kit: visual + verbal + applications + “Zoviz-style” artifacts.
  */
 export async function generateFullKit(
   input: BrandInputs
@@ -125,7 +124,7 @@ export async function generateFullKit(
 
     const json = await callGroqAsJson(
       `
-EXPECTED JSON SHAPE:
+EXPECTED JSON SHAPE (ALL FIELDS REQUIRED):
 
 {
   "colors": [
@@ -147,6 +146,7 @@ EXPECTED JSON SHAPE:
   },
   "taglineSuggestions": string[],
   "brandVoiceDescription": string,
+
   "socialMockups": [
     { "type": string, "description": string }
   ],
@@ -160,12 +160,68 @@ EXPECTED JSON SHAPE:
   "campaignDirections": [
     { "title": string, "concept": string, "suggestedVisuals": string }
   ],
-  "nextSteps": string[]
+  "nextSteps": string[],
+
+  // EXACTLY TWO SAMPLE LOGO CONCEPTS
+  "sampleLogos": [
+    {
+      "id": string,
+      "name": string,
+      "description": string,
+      "rationale": string
+    }
+  ],
+
+  // EXACTLY TWO TYPOGRAPHY SYSTEMS
+  "sampleTypographies": [
+    {
+      "name": string,
+      "headingFont": string,
+      "bodyFont": string,
+      "accentFont": string,
+      "usage": string,
+      "sampleHeading": string,
+      "sampleBody": string
+    }
+  ],
+
+  // EXACTLY TWO POSTER/FLYER CONCEPTS
+  "samplePosters": [
+    {
+      "title": string,
+      "headline": string,
+      "subheadline": string,
+      "description": string,
+      "callToAction": string,
+      "placement": string
+    }
+  ],
+
+  // EXACTLY TWO SOCIAL POSTS: ONE FOR INSTAGRAM, ONE FOR TWITTER/X
+  "socialPostIdeas": [
+    {
+      "platform": string,        // "Instagram" or "Twitter/X"
+      "format": string,          // "Feed post", "Story", etc.
+      "caption": string,
+      "visualIdea": string,
+      "hook": string,
+      "callToAction": string
+    }
+  ]
 }
 
-All content must be tailored to the given business.
-Use clear, professional wording.
-Do NOT add any extra top-level fields.
+RULES:
+
+- Provide **at least two** items in each of the arrays:
+  - "sampleLogos"
+  - "sampleTypographies"
+  - "samplePosters"
+  - "socialPostIdeas"
+
+- For "socialPostIdeas", make one clearly aimed at Instagram and one at Twitter/X.
+- All content must be tailored to the given business, audience, values and tone.
+- Use clear, professional, brand-agency level wording.
+- Do NOT add any extra top-level fields. Use exactly the keys defined above.
       `,
       { task: "full_brand_kit", input }
     );

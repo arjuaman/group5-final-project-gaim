@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {/* Footer */}
           <footer className="border-t border-brand-bgAlt bg-white mt-10">
             <div className="max-w-6xl mx-auto px-6 py-4 text-xs md:text-sm text-gray-500 flex flex-wrap gap-3 justify-between">
-              <span>© {new Date().getFullYear()} GenAI Brand Kit</span>
+              <span>© {new Date().getFullYear()} Team "Proudly GAIM"</span>
               <div className="flex gap-3">
                 <a href="#" className="hover:text-brand.primary">
                   About Us

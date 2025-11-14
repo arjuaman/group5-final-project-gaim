@@ -13,7 +13,7 @@ export default function HomePage() {
             with GenAI.
           </h1>
 
-          <p className="text-sm md:text-base text-slate-800 max-w-xl">
+          <p id="forceColor" className="text-sm md:text-base text-slate-800 max-w-xl">
             From logos to campaigns, generate a complete brand kit in minutes –
             no design background required.
           </p>
